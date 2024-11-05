@@ -12,12 +12,12 @@ terraform {
   }
 }
 
-resource "aws_instance" "example" {
-  ami           = "ami-0c55b159cbfafe1f0"  
+resource "aws_instance" "terraformtest" {
+  ami           = "ami-06b21ccaeff8cd686"  
   instance_type = "t2.micro"  
   key_name      = "s8armand.perm"  
-  subnet_id     = "subnet-1234567890abcdef0"  
-  vpc_security_group_ids = ["sg-0abc123456789def0"]  
+  subnet_id     = "subnet-09cd7fc700d1e24ed"  
+  vpc_security_group_ids = ["sg-07b9596b11071f81a"]  
 
   tags = {
     Name = "s8armandInstancefromTerraform"
