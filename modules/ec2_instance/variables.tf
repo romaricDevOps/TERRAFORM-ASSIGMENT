@@ -1,27 +1,42 @@
-variable "region" {
-  description = "The AWS region where the EC2 instance will be created."
-}
 
 variable "ami_id" {
-  description = "The ID of the AMI for the EC2 instance."
-}
-
-variable "instance_type" {
-  description = "The instance type for the EC2 instance."
-}
-
-variable "key_name" {
-  description = "The key pair name for SSH access."
-}
-
-variable "subnet_id" {
-  description = "The ID of the subnet where the EC2 instance will be launched."
-}
-
-variable "security_group_id" {
-  description = "The ID of the security group for the EC2 instance."
+    type = string
+    default = "ami-0c55b159cbfafe1f0"
 }
 
 variable "instance_name" {
-  description = "The name tag for the EC2 instance."
+    type = string
+    default = "jenkins" 
+}
+variable "aws_region" {
+    type = string
+    default = "us-east-1"
+}
+variable "security_group_id" {
+    type = string
+    default = "sg-0abc123456789def0"
+}
+variable "subnet_id" {
+    type = string
+    default = "subnet-1234567890abcdef0"
+}
+
+variable "key_name" {
+    type = string
+    default = "s8armand.perm"
+}
+
+variable "instance_type" {
+    type = string
+    default = "t2.micro"
+}
+variable "tags" {
+    type = map(string)
+    default = {
+    "owner"          = "S8ARMAND"
+    "environment"    = "dev"
+    "project"        = "del"
+    "create_by"      = "Terraform"
+    "cloud_provider" = "aws"
+  }
 }

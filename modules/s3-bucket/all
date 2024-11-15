@@ -1,0 +1,81 @@
+# main.tf
+
+variable "bucket_name" {
+  type    = string
+  description = "The name of the S3 bucket to create"
+}
+
+variable "dynamodb_table_name" {
+  type    = string
+  description = "The name of the DynamoDB table to create"
+}
+
+provider "aws" {
+  region = "us-west-2"  # Update with your desired AWS region
+}
+
+resource "aws_s3_bucket" "bucket" {
+  bucket = var.bucket_name
+  acl    = "private"
+}
+
+resource "aws_dynamodb_table" "table" {
+  name           = var.dynamodb_table_name
+  billing_mode   = "PROVISIONED"
+  read_capacity  = 5
+  write_capacity = 5
+  hash_key       = "id"
+  attribute {
+    name = "id"
+    type = "S"
+  }
+}
+
+# Outputs
+output "s3_bucket_id" {
+  value = aws_s3_bucket.bucket.id
+}
+
+output "dynamodb_table_id" {
+  value = aws_dynamodb_table.table.id
+}
+
+
+# main.tf
+
+variable "bucket_name" {
+  type        = string
+  description = "The name of the S3 bucket to create"
+}
+
+variable "dynamodb_table_name" {
+  type        = string
+  description = "The name of the DynamoDB table to create"
+}
+
+variable "s3_bucket_acl" {
+  type        = string
+  default     = "private"
+  description = "The ACL for the S3 bucket"
+}
+
+provider "aws" {
+  region = "us-west-2"  # Update with your desired AWS region
+}
+
+resource "aws_s3_bucket" "bucket" {
+  bucket = var.bucket_name
+  acl    = var.s3_bucket_acl
+}
+
+resource "aws_dynamodb_table" "table" {
+  name           = var.dynamodb_table_name
+  billing_mode   = "PROVISIONED"
+  read_capacity  = 5
+  write_capacity = 5
+  hash_key       = "id"
+  attribute {
+    name = "id"
+    type = "S"
+  }
+}
