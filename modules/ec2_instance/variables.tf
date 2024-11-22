@@ -30,13 +30,3 @@ variable "instance_type" {
     type = string
     default = "t2.micro"
 }
-variable "tags" {
-    type = map(string)
-    default = {
-    "owner"          = "S8ARMAND"
-    "environment"    = "dev"
-    "project"        = "del"
-    "create_by"      = "Terraform"
-    "cloud_provider" = "aws"
-  }
-}
